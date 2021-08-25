@@ -1,9 +1,9 @@
-let numerocarta = 0;
+let arraycartas = [];
 
 function dibujacartas() {
     nrocartas = document.getElementById("nrocartas").value;
 
-    let numeros = ["2", "3", "4", "5", "6", "7", "8", "9", "J", "Q", "K", "A"];
+    let numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
     let pintas = ["♦", "♥", "♠", "♣"];
 
     let divcartas = document.querySelector('div.cartas');
@@ -14,7 +14,7 @@ function dibujacartas() {
 
         let divcarta = document.createElement("div");
         divcarta.classList.add("carta");
-        
+
         function generarnumero(array) {
             let x = Math.floor(Math.random() * array.length);
             return x;
@@ -40,8 +40,8 @@ function dibujacartas() {
         let a2 = document.createElement("a");
         a2.classList.add("numero");
         a2.style.color = color;
-        let numeroena = document.createTextNode(numeroobtenido);
-        a2.appendChild(numeroena);
+        let numero = document.createTextNode(obtenerValor(numeroobtenido));
+        a2.appendChild(numero);
         divcarta.appendChild(a2);
 
         let a3 = document.createElement("a");
@@ -51,10 +51,45 @@ function dibujacartas() {
         a3.appendChild(figura);
         divcarta.appendChild(a3);
 
-        divcartas.appendChild(divcarta);
+        divcartas.appendChild(divcarta);  // Agrego ya la carta diseñada al div Cartas
+
+        arraycartas[index] = { numeroobtenido, pintaobtenida }; // Lleno el arraycartas con los datos para ordenar
     }
+
+};
+console.log(arraycartas);
+
+function obtenerValor(numero) {
+    if (numero === 11) return "J";
+    if (numero === 12) return "Q";
+    if (numero === 13) return "K";
+    if (numero === 1) return "A";
+    return numero;
 };
 
+function ordenaCartas() {
+    console.log(bubbleSort(arraycartas)); 
+};
 
+const bubbleSort = (arr = []) => {
+    let wall = arr.length - 1;
+    while( wall >= 0){
+        let index = 0;
+        while(index < wall){
+            if(arr[index].numeroobtenido > arr[index + 1].numeroobtenido){
+                let aux = arr[index + 1];
+                arr[index + 1] = arr[index];
+                arr[index] = aux;
+            }
+            codigo para generar e imprimir
+
+
+
+            index++;
+        }
+        wall--;
+    }
+    return arr;
+}
 
 
