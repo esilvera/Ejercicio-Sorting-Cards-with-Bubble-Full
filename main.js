@@ -57,8 +57,6 @@ function dibujacartas() {
     }
 
 };
-console.log(arraycartas);
-
 function obtenerValor(numero) {
     if (numero === 11) return "J";
     if (numero === 12) return "Q";
@@ -68,75 +66,66 @@ function obtenerValor(numero) {
 };
 
 function ordenaCartas() {
-    console.log(bubbleSort(arraycartas));
+    /*     console.log(bubbleSort(arraycartas));  */
+    bubbleSort(arraycartas)
 };
 
 let divcartasorden = document.querySelector('div.cartasorden');
 
 const bubbleSort = (arr = []) => {
-    console.log("antes de ordenar cartas");
     let wall = arr.length - 1;
-    while (wall >= 0) {
+    while (wall > 0) {
         let index = 0;
-        while (index < wall) {
-            // Comparar
-            console.log("voy a comparar cartas");
-            console.log(arr[index].numeroobtenido + "contra" + arr[index + 1].numeroobtenido);
+        while (index <= wall) {
             if (arr[index].numeroobtenido > arr[index + 1].numeroobtenido) {
-                console.log("es mayor");
-                let aux = arr[index + 1];
-                arr[index + 1] = arr[index];
-                arr[index] = aux;
+                let aux = arr[index];
+                arr[index] = arr[index + 1];
+                arr[index + 1] = aux;
             }
-            // codigo para generar e imprimir
-            console.log("index: " + index);
-            console.log("wall: " + wall);
+            
+            for (let i = 0; i < arr.length; i++) {
+                // ****************************************
+                let divcarta = document.createElement("div");
+                divcarta.classList.add("carta");
 
-            let divcarta = document.createElement("div");
-            divcarta.classList.add("carta");
-console.log("VOY A GUARDAR NUMERO Y PINTA");
-            let numeroobtenido = arraycartas[index].numeroobtenido;
-console.log("YA GUARDE NUMERO Y TIENE " + numeroobtenido);            
-            let pintaobtenida = arraycartas[index].pintaobtenida;
-console.log("YA GUARDE PINTA Y TIENE "+ pintaobtenida);
+                numeroobtenido = arr[i].numeroobtenido;
+                pintaobtenida = arr[i].pintaobtenida;
 
-            if (pintaobtenida === "♦" || pintaobtenida === "♥") {
-                color = "red";
-            } else {
-                color = "black"
+                if (pintaobtenida === "♦" || pintaobtenida === "♥") {
+                    color = "red";
+                } else {
+                    color = "black"
+                }
+
+                let a1 = document.createElement("a");
+                a1.classList.add("superior");
+                a1.style.color = color;
+                let figura = document.createTextNode(pintaobtenida);
+                a1.appendChild(figura);
+                divcarta.appendChild(a1);
+
+                let a2 = document.createElement("a");
+                a2.classList.add("numero");
+                a2.style.color = color;
+                let numero = document.createTextNode(obtenerValor(numeroobtenido));
+                a2.appendChild(numero);
+                divcarta.appendChild(a2);
+
+                let a3 = document.createElement("a");
+                a3.classList.add("inferior");
+                a3.style.color = color;
+                figura = document.createTextNode(pintaobtenida);
+                a3.appendChild(figura);
+                divcarta.appendChild(a3);
+
+                divcartasorden.appendChild(divcarta);
+
+                // *****************************************
             }
-
-            let a1 = document.createElement("index");
-            a1.classList.add("superior");
-            a1.style.color = color;
-            let figura = document.createTextNode(pintaobtenida);
-            a1.appendChild(figura);
-            divcarta.appendChild(a1);
-
-            let a2 = document.createElement("index");
-            a2.classList.add("numero");
-            a2.style.color = color;
-            let numero = document.createTextNode(obtenerValor(numeroobtenido));
-            a2.appendChild(numero);
-            divcarta.appendChild(a2);
-
-            let a3 = document.createElement("index");
-            a3.classList.add("inferior");
-            a3.style.color = color;
-            figura = document.createTextNode(pintaobtenida);
-            a3.appendChild(figura);
-            divcarta.appendChild(a3);
-
-            // Dibujo la carta
-            console.log("**** DIBUJO LA CARTA *****");
-            divcartasorden.appendChild(divcarta);  // Agrego ya la carta diseñada al div Cartas
-
             index++;
-            console.log("incremento index tiene " + index);
-        };  // cierre del while index < wall
+        };
         wall--;
-        console.log("disminuyo wall tiene " + wall);
-    }; // cierre while wall >= 0
+    };
     return arr;
 };
 

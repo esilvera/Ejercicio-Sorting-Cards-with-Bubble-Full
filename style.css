@@ -5,6 +5,10 @@ body {
     width: 100%;
     padding-top: 20px;
 }
+.cartasorden {
+    width: 100%;
+    padding-top: 20px;
+}
 .carta{
     display: inline-flex;
     background: white;
