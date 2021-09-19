@@ -74,9 +74,10 @@ let divcartasorden = document.querySelector('div.cartasorden');
 
 const bubbleSort = (arr = []) => {
     let wall = arr.length - 1;
+    
     while (wall > 0) {
         let index = 0;
-        while (index <= wall) {
+        while (index < wall) {
             if (arr[index].numeroobtenido > arr[index + 1].numeroobtenido) {
                 let aux = arr[index];
                 arr[index] = arr[index + 1];
@@ -84,7 +85,7 @@ const bubbleSort = (arr = []) => {
             }
             
             for (let i = 0; i < arr.length; i++) {
-                // ****************************************
+                // **************************************** </br>
                 let divcarta = document.createElement("div");
                 divcarta.classList.add("carta");
 
@@ -119,8 +120,14 @@ const bubbleSort = (arr = []) => {
                 divcarta.appendChild(a3);
 
                 divcartasorden.appendChild(divcarta);
-
                 // *****************************************
+                console.log("i tiene: " + i);
+                console.log("Array tiene: " + arr.length)
+                if (i == arr.length -1){
+                    console.log("i dentro: " + i);
+                    let saltoLinea = document.createElement("div");
+                    divcartasorden.appendChild(saltoLinea);
+                }
             }
             index++;
         };
