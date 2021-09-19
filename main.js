@@ -74,56 +74,62 @@ let divcartasorden = document.querySelector('div.cartasorden');
 
 const bubbleSort = (arr = []) => {
     let wall = arr.length - 1;
-    
+    let change = 0;
+
     while (wall > 0) {
         let index = 0;
         while (index < wall) {
             if (arr[index].numeroobtenido > arr[index + 1].numeroobtenido) {
+                change = 1;
                 let aux = arr[index];
                 arr[index] = arr[index + 1];
                 arr[index + 1] = aux;
             }
-            
-            for (let i = 0; i < arr.length; i++) {
-                // ***
-                let divcarta = document.createElement("div");
-                divcarta.classList.add("carta");
+            console.log(index);
+            console.log(wall);
+            if (change == 1) {
+                change = 0;
+                for (let i = 0; i < arr.length; i++) {
+                    // ***
+                    let divcarta = document.createElement("div");
+                    divcarta.classList.add("carta");
 
-                numeroobtenido = arr[i].numeroobtenido;
-                pintaobtenida = arr[i].pintaobtenida;
+                    numeroobtenido = arr[i].numeroobtenido;
+                    pintaobtenida = arr[i].pintaobtenida;
 
-                if (pintaobtenida === "♦" || pintaobtenida === "♥") {
-                    color = "red";
-                } else {
-                    color = "black"
-                }
+                    if (pintaobtenida === "♦" || pintaobtenida === "♥") {
+                        color = "red";
+                    } else {
+                        color = "black"
+                    }
 
-                let a1 = document.createElement("a");
-                a1.classList.add("superior");
-                a1.style.color = color;
-                let figura = document.createTextNode(pintaobtenida);
-                a1.appendChild(figura);
-                divcarta.appendChild(a1);
+                    let a1 = document.createElement("a");
+                    a1.classList.add("superior");
+                    a1.style.color = color;
+                    let figura = document.createTextNode(pintaobtenida);
+                    a1.appendChild(figura);
+                    divcarta.appendChild(a1);
 
-                let a2 = document.createElement("a");
-                a2.classList.add("numero");
-                a2.style.color = color;
-                let numero = document.createTextNode(obtenerValor(numeroobtenido));
-                a2.appendChild(numero);
-                divcarta.appendChild(a2);
+                    let a2 = document.createElement("a");
+                    a2.classList.add("numero");
+                    a2.style.color = color;
+                    let numero = document.createTextNode(obtenerValor(numeroobtenido));
+                    a2.appendChild(numero);
+                    divcarta.appendChild(a2);
 
-                let a3 = document.createElement("a");
-                a3.classList.add("inferior");
-                a3.style.color = color;
-                figura = document.createTextNode(pintaobtenida);
-                a3.appendChild(figura);
-                divcarta.appendChild(a3);
+                    let a3 = document.createElement("a");
+                    a3.classList.add("inferior");
+                    a3.style.color = color;
+                    figura = document.createTextNode(pintaobtenida);
+                    a3.appendChild(figura);
+                    divcarta.appendChild(a3);
 
-                divcartasorden.appendChild(divcarta);
-                // ***
-                if (i == arr.length -1){
-                    let saltoLinea = document.createElement("div");
-                    divcartasorden.appendChild(saltoLinea);
+                    divcartasorden.appendChild(divcarta);
+                    // ***
+                    if (i == arr.length - 1) {
+                        let saltoLinea = document.createElement("div");
+                        divcartasorden.appendChild(saltoLinea);
+                    }
                 }
             }
             index++;
