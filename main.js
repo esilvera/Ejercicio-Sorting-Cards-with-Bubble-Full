@@ -1,14 +1,17 @@
 let arraycartas = [];
 
 function dibujacartas() {
-    nrocartas = document.getElementById("nrocartas").value;
 
+    nrocartas = document.getElementById("nrocartas").value;
+    arraycartas = [];  // Borro el array para nuevo draw/sort
+    
     let numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
     let pintas = ["♦", "♥", "♠", "♣"];
 
     let divcartas = document.querySelector('div.cartas');
 
-    divcartas.innerHTML = " ";  //  Limpio el HTML al pulsar Dibujar para los ciclos
+    divcartas.innerHTML = " ";  //  Limpio los HTML al pulsar Dibujar para los ciclos
+    divcartasorden.innerHTML = " ";
 
     for (let index = 0; index < nrocartas; index++) {
 
@@ -66,7 +69,6 @@ function obtenerValor(numero) {
 };
 
 function ordenaCartas() {
-    /*     console.log(bubbleSort(arraycartas));  */
     bubbleSort(arraycartas)
 };
 
@@ -85,8 +87,6 @@ const bubbleSort = (arr = []) => {
                 arr[index] = arr[index + 1];
                 arr[index + 1] = aux;
             }
-            console.log(index);
-            console.log(wall);
             if (change == 1) {
                 change = 0;
                 for (let i = 0; i < arr.length; i++) {
